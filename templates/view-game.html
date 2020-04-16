@@ -1,0 +1,53 @@
+{% extends 'layout.html' %}
+{% block heading %}View Game: {{game.game_id}}{% endblock %}
+{% block content %}
+
+<div class="row">
+    <div class="col-6">
+        <h2>Home</h2>
+        Replace this with actual team info by updating models!
+        <h2><a href="{{url_for('view_teams', team_id=game.home_team_id)}}">{{game.home_team_id}}</a></h2>
+    </div>
+    <div class="col-6">
+        <h2>Away</h2>
+        Replace this with actual team info by updating models!
+        <h2><a href="{{url_for('view_teams', team_id=game.visitor_team_id)}}">{{game.visitor_team_id}}</a></h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <h3 style="text-align: right">PTS</h3>
+        <h3 style="text-align: right">REB</h3>
+        <h3 style="text-align: right">AST</h3>
+        <h3 style="text-align: right">FG%</h3>
+        <h3 style="text-align: right">FT%</h3>
+        <h3 style="text-align: right">FG3%</h3>
+    </div>
+    <div class="col-3">
+        <h3>{{game.pts_home}}</h3>
+        <h3>{{game.reb_home}}</h3>
+        <h3>{{game.ast_home}}</h3>
+        <h3>{{game.fg_pct_home}}</h3>
+        <h3>{{game.ft_pct_home}}</h3>
+        <h3>{{game.fg3_pct_home}}</h3>
+    </div>
+    <div class="col-3">
+        <h3 style="text-align: right">PTS</h3>
+        <h3 style="text-align: right">REB</h3>
+        <h3 style="text-align: right">AST</h3>
+        <h3 style="text-align: right">FG%</h3>
+        <h3 style="text-align: right">FT%</h3>
+        <h3 style="text-align: right">FG3%</h3>
+    </div>
+    <div class="col-3">
+        <h3>{{game.pts_away}}</h3>
+        <h3>{{game.reb_away}}</h3>
+        <h3>{{game.ast_away}}</h3>
+        <h3>{{game.fg_pct_away}}</h3>
+        <h3>{{game.ft_pct_away}}</h3>
+        <h3>{{game.fg3_pct_away}}</h3>
+    </div>
+</div>
+
+{% endblock %}

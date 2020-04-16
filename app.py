@@ -73,6 +73,12 @@ def view_games():
     games = db.session.query(models.GameView).all()
     return render_template('view-all-games.html', games=games)
 
+@app.route('/view-game/<game_id>')
+def view_game(game_id):
+    game = db.session.query(models.Plays) \
+        .filter(models.Plays.game_id == game_id).first()
+    return render_template('view-game.html', game=game)
+
 @app.route('/view-performance')
 def view_performance():
     performances = db.session.query(models.Teams).all()

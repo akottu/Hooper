@@ -18,7 +18,7 @@
 
         <tr>
             <td> <button type="submit" formaction="">  </button> </td>
-            <td> <a>More Info</a> </td>
+            <td> <a href="{{url_for('view_game', game_id=game.game_id)}}">More Info</a> </td>
             <td>{{ game.home_team_city }} {{ game.home_team_nickname }}</td>
             <td>{{ game.visitor_team_city }} {{ game.visitor_team_nickname }}</td>
             <td>{{ game.game_date_est }}</td>
