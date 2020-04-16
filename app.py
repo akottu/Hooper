@@ -70,7 +70,7 @@ def view_teams(team_id):
 
 @app.route('/view-games')
 def view_games():
-    games = db.session.query(models.Games).all()
+    games = db.session.query(models.GameView).all()
     return render_template('view-all-games.html', games=games)
 
 @app.route('/view-performance')

@@ -31,6 +31,17 @@ class PlayersRosters(db.Model):
     name = db.Column('name', db.String(100))
     position = db.Column('position', db.String(1))
 
+class GameView(db.Model):
+    __tablename__ = 'gameview'
+    game_id = db.Column('game_id', db.Integer, primary_key=True)
+    game_date_est = db.Column('game_date_est', db.Date)
+    game_time = db.Column('game_time', db.Time)
+    game_status_text = db.Column('game_status_text', db.String(10))
+    home_team_city = db.Column('home_team_city', db.String(50))
+    home_team_nickname = db.Column('home_team_nickname', db.String(50))
+    visitor_team_city = db.Column('visitor_team_city', db.String(50))
+    visitor_team_nickname = db.Column('visitor_team_nickname', db.String(50))
+
 # class Standings(db.Model):
 #     __tablename__ = 'Standings'
 #     team_id = db.Column('team_id', db.Integer, primary_key=True)
@@ -74,13 +85,7 @@ class Games(db.Model):
     game_date_est = db.Column('game_date_est', db.Date)
     game_time = db.Column('game_time', db.Time)
     game_id = db.Column('game_id', db.Integer, primary_key=True)
-    game_status_text = db.Column('game_status_text', db.Integer)
-    home_team_id = db.Column('home_team_id', db.Integer)
-    home_city = db.Column('home_city', db.String(40))
-    home_nickname = db.Column('home_nickname', db.String(40))
-    visitor_team_id = db.Column('visitor_team_id', db.Integer)
-    visitor_city = db.Column('visitor_city', db.String(40))
-    visitor_nickname = db.Column('visitor_nickname', db.String(40))
+    game_status_text = db.Column('game_status_text', db.String(10))
 
 class Plays(db.Model):
     __tablename__ = 'plays'
