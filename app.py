@@ -13,15 +13,15 @@ db = SQLAlchemy(app, session_options={'autocommit': False})
 def index():
     players = db.session.query(models.Players)\
         .order_by(models.Players.eff.desc())\
-        .all()[0:5]
+        .all()[0:10]
     west_standings = db.session.query(models.Teams)\
         .filter(models.Teams.conference == "West")\
         .order_by(models.Teams.w_pct.desc())\
-        .all()[0:5]
+        .all()[0:8]
     east_standings = db.session.query(models.Teams)\
         .filter(models.Teams.conference == "East")\
         .order_by(models.Teams.w_pct.desc())\
-        .all()[0:5]
+        .all()[0:8]
     return render_template('index.html', players=players, west_standings=west_standings, east_standings=east_standings)
 
 @app.route('/view-players')
