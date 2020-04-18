@@ -19,7 +19,7 @@
 
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td style="width: 35%"><a href="{{url_for('view_teams', team_id=standing.team_id)}}">{{ standing.city }} {{ standing.nickname }}</a></td>
+                    <td style="width: 35% "><a style="color:black" href="{{url_for('view_teams', team_id=standing.team_id)}}">{{ standing.city }} {{ standing.nickname }}</a></td>
                     <td>{{ standing.w + standing.l }}</td>
                     <td>{{ standing.w }} - {{ standing.l }}</td>
                     <td>{{ standing.w_pct }}</td>
@@ -44,7 +44,7 @@
 
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td style="width: 35%"><a href="{{url_for('view_teams', team_id=standing.team_id)}}">{{ standing.city }} {{ standing.nickname }}</a></td>
+                    <td style="width: 35%"><a style="color:black" href="{{url_for('view_teams', team_id=standing.team_id)}}">{{ standing.city }} {{ standing.nickname }}</a></td>
                     <td>{{ standing.w + standing.l }}</td>
                     <td>{{ standing.w }} - {{ standing.l }}</td>
                     <td>{{ standing.w_pct }}</td>

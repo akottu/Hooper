@@ -69,3 +69,23 @@ th, td {
 th {
     text-align: center;
 }
+
+.column7{
+    width:5%;
+    padding-left:40px;
+}
+
+
+
+.column8{
+    width:1%;
+}
+
+
+.column9{
+    width:2%;
+}
+
+.column10{
+    width:3%;
+}

@@ -6,12 +6,12 @@
         <div class="panel panel-default">
             <table>
                 <tr>
-                    <th class="cell100 column1">Edit</th>
-                    <th class="cell100 column1">Player</th>
-                    <th class="cell100 column1">Position</th>
-                    <th class="cell100 column1">PPG</th>
-                      <th class="cell100 column1"> APG </th>
-                       <th class="cell100 column1"> RPG </th>
+                    <th class="cell100 column10">Edit</th>
+                    <th class="cell100 column4">Player</th>
+                    <th class="cell100 column5">Position</th>
+                    <th class="cell100 column5">PPG</th>
+                      <th class="cell100 column5"> APG </th>
+                       <th class="cell100 column5"> RPG </th>
                 </tr>
 
 
@@ -20,7 +20,7 @@
 
         <tr>
             <td> <button type="submit" formaction="{{url_for('edit_player', name=player.name)}}">  </button> </td>
-            <td><a href="{{url_for('view_player', player_id=player.player_id)}}">{{ player.name }}</a></td>
+            <td><a style="color:black" href="{{url_for('view_player', player_id=player.player_id)}}">{{ player.name }}</a></td>
             <td>{{ player.position }}</td>
             <td>{{ player.avg_points }}</td>
             <td>{{ player.avg_assists }}</td>
