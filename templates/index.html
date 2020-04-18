@@ -2,42 +2,43 @@
 {% block heading %}Home Page{% endblock %}
 {% block content %}
 
-<p>This is the home page!</p>
-
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-5">
             <h2 style="text-align: center">West Standings</h2>
+             <div class="panel panel-default">
             <table>
                 <tr>
-                    <th>Rank</th>
-                    <th>Team</th>
-                    <th>Record</th>
+                   <th class="cell100 column1">Rank</th>
+                    <th class="cell100 column1">Team</th>
+                    <th class="cell100 column1">Record</th>
                 </tr>
                 <tr>
                     {% for team in west_standings %}
                         <tr>
                             <td>{{loop.index}}</th>
-                            <td><a href="{{url_for('view_teams', team_id=team.team_id)}}">{{team.city}} {{team.nickname}}</a></th>
+                            <td><a style="color: black" href="{{url_for('view_teams', team_id=team.team_id)}}">{{team.city}} {{team.nickname}}</a></th>
                             <td>{{team.w}}-{{team.l}}</th>
                         </tr>
                     {% endfor %}
                 </tr>
             </table>
         </div>
+             </div>
         <div class="col-6">
             <h2 style="text-align: center">East Standings</h2>
+             <div class="panel panel-default">
             <table>
                 <tr>
-                    <th>Rank</th>
-                    <th>Team</th>
-                    <th>Record</th>
+                    <th class="cell100 column1">Rank</th>
+                    <th class="cell100 column1">Team</th>
+                    <th class="cell100 column1">Record</th>
                 </tr>
                 <tr>
                     {% for team in east_standings %}
                         <tr>
                             <td>{{loop.index}}</th>
-                            <td><a href="{{url_for('view_teams', team_id=team.team_id)}}">{{team.city}} {{team.nickname}}</a></th>
+                            <td><a style="color: black" href="{{url_for('view_teams', team_id=team.team_id)}}">{{team.city}} {{team.nickname}}</a></th>
                             <td>{{team.w}}-{{team.l}}</th>
                         </tr>
                     {% endfor %}
@@ -45,18 +46,20 @@
             </table>
         </div>
     </div>
+    </div>
     <br>
     <div class="row">
-        <div class="col-6">
+        <div class="col-7">
             <h2 style="text-align: center">Player Efficiency Rankings</h2>
+             <div class="panel panel-default">
             <table>
                 <tr>
-                    <th>Rank</th>
-                    <th>Player</th>
-                    <th>PPG</th>
-                    <th>APG</th>
-                    <th>RPG</th>
-                    <th>EFF</th>
+                    <th class="cell100 column3">Rank</th>
+                    <th class="cell100 column4">Player</th>
+                    <th class="cell100 column5">PPG</th>
+                    <th class="cell100 column5">APG</th>
+                    <th class="cell100 column5">RPG</th>
+                    <th class="cell100 column5">EFF</th>
                 </tr>
                 {% for player in players %}
                     <tr>
@@ -70,7 +73,8 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="col-6">
+        </div>
+        <div class="col-5">
             <h2 style="text-align: center">Upcoming Games</h2>
         </div>
     </div>

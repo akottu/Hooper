@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+    border-collapse:separate;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+     -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.table-responsive {
+    max-height:300px;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 460px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}

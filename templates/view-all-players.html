@@ -2,18 +2,21 @@
 {% block heading %}View Players{% endblock %}
 {% block content %}
 <form>
-    <table style="width:100%">
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="panel panel-default">
+            <table>
+                <tr>
+                    <th class="cell100 column1">Edit</th>
+                    <th class="cell100 column1">Player</th>
+                    <th class="cell100 column1">Position</th>
+                    <th class="cell100 column1">PPG</th>
+                      <th class="cell100 column1"> APG </th>
+                       <th class="cell100 column1"> RPG </th>
+                </tr>
+
 
         <tr>
-            <th>Edit</th>
-            <th>Player</th>
-            <th>Position</th>
-            <th>PPG</th>
-            <th>APG</th>
-            <th>RPG</th>
-        </tr>
-
-        {% for player in  players %}
+            {% for player in  players %}
 
         <tr>
             <td> <button type="submit" formaction="{{url_for('edit_player', name=player.name)}}">  </button> </td>
@@ -27,7 +30,9 @@
         {% endfor %}
 
     </table>
+    </div>
 
 </form>
 
 {% endblock %}
+s

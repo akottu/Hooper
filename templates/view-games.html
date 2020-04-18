@@ -14,16 +14,14 @@
             <th>Status</th>
         </tr>
 
-        {% for game in games %}
+        {% for player in  players %}
 
         <tr>
-            <td> <button type="submit" formaction="">  </button> </td>
-            <td> <a>More Info</a> </td>
-            <td>{{ game.home_city }} {{ game.home_nickname }}</td>
-            <td>{{ game.visitor_city }} {{ game.visitor_nickname }}</td>
-            <td>{{ game.game_date_est }}</td>
-            <td>{{ game.game_time }}</td>
-            <td>{{ game.game_status_text }}</td>
+            <td> <button type="submit" formaction="{{url_for('edit_player', name=player.name)}}">  </button> </td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.age }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.team_id }}</td>
         </tr>
 
         {% endfor %}
