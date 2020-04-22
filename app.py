@@ -29,21 +29,6 @@ def view_players():
     players = db.session.query(models.Players).all()
     return render_template('view-all-players.html', players=players)
 
-@app.route('/view-player/<player_id>')
-def view_player(player_id):
-    player = db.session.query(models.Players)\
-        .filter(models.Players.player_id == player_id)\
-        .first()
-    player_team = db.session.query(models.Teams)\
-        .filter(models.Teams.team_id == db.session.query(models.Rosters).filter(models.Rosters.player_id == player_id).first().team_id)\
-        .first()
-    all_players = db.session.query(models.Players)\
-        .all()
-    player_performances = db.session.query(models.Performance)\
-        .filter(models.Performance.player_id == player_id)\
-        .all()
-    return render_template('view-player.html', player=player, player_team=player_team, all_players=all_players, player_performances=player_performances)
-
 @app.route('/view-standings')
 def view_standings():
     west_standings = db.session.query(models.Teams)\
@@ -68,16 +53,33 @@ def view_teams(team_id):
         .all()
     return render_template('view-team.html', team=team, all_teams=all_teams, players_on_roster=players_on_roster)
 
-@app.route('/view-games')
-def view_games():
-    games = db.session.query(models.GameView).all()
-    return render_template('view-all-games.html', games=games)
+@app.route('/view-player/<player_id>')
+def view_player(player_id):
+    player = db.session.query(models.Players)\
+        .filter(models.Players.player_id == player_id)\
+        .first()
+    player_team = db.session.query(models.Teams)\
+        .filter(models.Teams.team_id == db.session.query(models.Rosters).filter(models.Rosters.player_id == player_id).first().team_id)\
+        .first()
+    all_players = db.session.query(models.Players)\
+        .all()
+    player_performances = db.session.query(models.Performance)\
+        .filter(models.Performance.player_id == player_id)\
+        .all()
+    return render_template('view-player.html', player=player, player_team=player_team, all_players=all_players, player_performances=player_performances)
 
 @app.route('/view-game/<game_id>')
 def view_game(game_id):
     game = db.session.query(models.Plays) \
         .filter(models.Plays.game_id == game_id).first()
+    away_team = db.session.query(models.Teams) \
+        .filter(models.Teams.team_id == db.session.query(models.Plays).filter(models.Plays.visitor_team_id == game.visitor))
     return render_template('view-game.html', game=game)
+
+@app.route('/view-games')
+def view_games():
+    games = db.session.query(models.GameView).all()
+    return render_template('view-all-games.html', games=games)
 
 @app.route('/view-performance')
 def view_performance():
