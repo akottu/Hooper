@@ -94,7 +94,7 @@ def edit_player(name):
     if form.validate_on_submit():
         try:
             form.errors.pop('database', None)
-            player.age = form.age.data
+            player.player_id = form.player_id.data
             db.session.commit()
             return redirect(url_for('view_players'))
         except BaseException as e:
