@@ -20,9 +20,11 @@ table {
 position: relative;
 height: 460px;
 overflow: auto;
+
 }
 .table-wrapper-scroll-y {
 display: block;
+
 }
 
 .my-custom-scrollbar th { position: sticky; top: 0; }
