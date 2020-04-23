@@ -2,8 +2,20 @@
 {% block heading %}View Players{% endblock %}
 {% block content %}
 
+<style>
+input[type=text] {
+  border: none;        /* Remove default borders */
+  padding: 4px 8px;
+  border-radius: 12px; /* Sadly outline does not round! therefore...*/
+}
 
- <input class="form-control" id="myInput" type="text"  style ="width:30%" placeholder="Search a player ...">
+input[type=text]:focus{
+  box-shadow: 0 0 0 3px  #3E517A;
+    outline: none;
+}
+
+</style>
+ <input class="form-control" id="myInput" type="text"  style ="width:30%; margin-left:68%" placeholder="Search a player ...">
 
 
 <form>
