@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 import models
 import forms
 import urllib.parse
@@ -95,6 +96,7 @@ def edit_player(name):
         try:
             form.errors.pop('database', None)
             player.player_id = form.player_id.data
+            db.session.execute(text('UPDATE player SET player.name = form.name WHERE player.player_id = form.player_id'))
             db.session.commit()
             return redirect(url_for('view_players'))
         except BaseException as e:

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block heading %}Edit Team Information: {{team.name}}{% endblock %}
+{% block content %}
+<form action="{{url_for('edit_team', name=team.name)}}" method="POST">
+  {{form.csrf_token}}
+  <p>
+    Name: {{form.name}}
+    {% if form.name.errors %}
+    <ul>{% for error in form.name.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+<!--  <p>-->
+<!--    team_id: {{form.team_id}}-->
+<!--    {% if form.team_id.errors %}-->
+<!--    <ul>{% for error in form.team_id.errors %}<li>{{error}}</li>{% endfor %}</ul>-->
+<!--    {% endif %}-->
+<!--  </p>-->
+  <p>
+    Position: {{form.position}}
+    {% if form.position.errors %}
+    <ul>{% for error in form.position.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+  <hr/>
+
+  <input type="reset" value="Reset"/>
+  <input type="submit" value="Submit"/>
+  {% if 'database' in form.errors %}<p>{{form.errors['database']}}</p>{% endif %}
+</form>
+{% endblock %}
