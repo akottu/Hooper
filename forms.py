@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, IntegerField, SelectField, SubmitField, DecimalField
 from wtforms.validators import DataRequired
-from wtforms_components import TimeField
+# from wtforms_components import TimeField
 
 class PlayerEditFormFactory:
     @staticmethod
