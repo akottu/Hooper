@@ -108,7 +108,7 @@ def edit_player(name):
 
 @app.route('/edit-team/<name>', methods=['GET', 'POST'])
 def edit_team(name):
-    player = db.session.query(models.Teams)\
+    team = db.session.query(models.Teams)\
         .filter(models.Teams.name == name).first()
     form = forms.TeamEditFormFactory.form(team)
     if form.validate_on_submit():
@@ -126,7 +126,7 @@ def edit_team(name):
 
 @app.route('/edit-game/<name>', methods=['GET', 'POST'])
 def edit_game(gameID):
-    player = db.session.query(models.Games)\
+    game = db.session.query(models.Games)\
         .filter(models.Games.game_id == gameID).first()
     form = forms.GameEditFormFactory.form(game)
     if form.validate_on_submit():
