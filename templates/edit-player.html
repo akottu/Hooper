@@ -21,6 +21,73 @@
     <ul>{% for error in form.position.errors %}<li>{{error}}</li>{% endfor %}</ul>
     {% endif %}
   </p>
+  <p>
+    Avg_points: {{form.avg_points}}
+    {% if form.avg_points.errors %}
+    <ul>{% for error in form.avg_points.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_rebounds: {{form.avg_rebounds}}
+    {% if form.avg_rebounds.errors %}
+    <ul>{% for error in form.avg_rebounds.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_assists: {{form.avg_assists}}
+    {% if form.avg_assists.errors %}
+    <ul>{% for error in form.avg_assists.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_steals: {{form.avg_steals}}
+    {% if form.avg_steals.errors %}
+    <ul>{% for error in form.avg_steals.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_blocks: {{form.avg_blocks}}
+    {% if form.avg_blocks.errors %}
+    <ul>{% for error in form.avg_blocks.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_turnovers: {{form.avg_turnovers}}
+    {% if form.avg_turnovers.errors %}
+    <ul>{% for error in form.avg_turnovers.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_fgm: {{form.avg_fgm}}
+    {% if form.avg_fgm.errors %}
+    <ul>{% for error in form.avg_fgm.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_fga: {{form.avg_fga}}
+    {% if form.avg_fga.errors %}
+    <ul>{% for error in form.avg_fga.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_ftm: {{form.avg_ftm}}
+    {% if form.avg_ftm.errors %}
+    <ul>{% for error in form.avg_ftm.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    avg_fta: {{form.avg_fta}}
+    {% if form.avg_fta.errors %}
+    <ul>{% for error in form.avg_fta.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+  <p>
+    eff: {{form.eff}}
+    {% if form.eff.errors %}
+    <ul>{% for error in form.eff.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
 
   <hr/>
 
