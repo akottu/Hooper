@@ -4,35 +4,30 @@
 
 
     <div class="row">
-        <div class="col-5">
-            <h2 style="text-align: center">West Standings</h2>
-             <div class="panel panel-default">
-            <table>
-                <tr>
-                   <th class="cell100 column1">Rank</th>
-                    <th class="cell100 column1">Team</th>
-                    <th class="cell100 column1">Record</th>
-                </tr>
-                <tr>
+        <div class="col-6">
+            <h2 style="text-align: center">West Playoff Picture</h2>
+                <table>
+                    <tr>
+                        <th style="text-align: center; width: 15%">Rank</th>
+                        <th style="text-align: center; width: 60%">Team</th>
+                        <th style="text-align: center; width: 25%">Record</th>
+                    </tr>
                     {% for team in west_standings %}
                         <tr>
-                            <td>{{loop.index}}</th>
-                            <td><a style="color: black" href="{{url_for('view_teams', team_id=team.team_id)}}">{{team.city}} {{team.nickname}}</a></th>
-                            <td>{{team.w}}-{{team.l}}</th>
+                            <td>{{loop.index}}</td>
+                            <td><a style="color: black" href="{{url_for('view_teams', team_id=team.team_id)}}">{{team.city}} {{team.nickname}}</a></td>
+                            <td>{{team.w}}-{{team.l}}</td>
                         </tr>
                     {% endfor %}
-                </tr>
-            </table>
-        </div>
-             </div>
-        <div class="col-6">
-            <h2 style="text-align: center">East Standings</h2>
-             <div class="panel panel-default">
+                </table>
+            </div>
+            <div class="col-6">
+                <h2 style="text-align: center">East Playoff Picture</h2>
             <table>
                 <tr>
-                    <th class="cell100 column1">Rank</th>
-                    <th class="cell100 column1">Team</th>
-                    <th class="cell100 column1">Record</th>
+                    <th style="text-align: center; width: 15%">Rank</th>
+                    <th style="text-align: center; width: 60%">Team</th>
+                    <th style="text-align: center; width: 25%">Record</th>
                 </tr>
                 <tr>
                     {% for team in east_standings %}
@@ -44,7 +39,6 @@
                     {% endfor %}
                 </tr>
             </table>
-        </div>
     </div>
     </div>
     <br>
