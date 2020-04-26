@@ -57,12 +57,12 @@
                 </tr>
                 {% for player in players %}
                     <tr>
-                        <td>{{loop.index}}</th>
-                        <td>{{player.name}}</th>
-                        <td>{{player.avg_points}}</th>
-                        <td>{{player.avg_assists}}</th>
-                        <td>{{player.avg_rebounds}}</th>
-                        <td>{{player.eff}}</th>
+                        <td>{{loop.index}}</td>
+                        <td><a href="{{url_for('view_player', player_id=player.player_id)}}">{{player.name}}</a></td>
+                        <td>{{player.avg_points}}</td>
+                        <td>{{player.avg_assists}}</td>
+                        <td>{{player.avg_rebounds}}</td>
+                        <td>{{player.eff}}</td>
                     </tr>
                 {% endfor %}
             </table>
