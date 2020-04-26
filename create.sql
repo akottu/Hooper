@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Game, Player, Team, Plays, Performance, Roster CASCADE;
+DROP TABLE IF EXISTS Game, Player, Team, Plays, Performance, Roster, HooperUser CASCADE;
 DROP FUNCTION IF EXISTS TF_Team_update, TF_Player_update, TF_Player_col_update, TF_Team_col_update, TF_Performance_col_update, TF_Plays_col_update, TF_Game_col_update CASCADE;
 
 CREATE TABLE IF NOT EXISTS Player (
@@ -106,6 +106,11 @@ CREATE TABLE IF NOT EXISTS Roster (
     PRIMARY KEY(player_id),
     FOREIGN KEY(player_id) REFERENCES Player(player_id),
     FOREIGN KEY(team_id) REFERENCES Team(team_id)
+);
+
+CREATE TABLE IF NOT EXISTS HooperUser (
+    id INT PRIMARY KEY,
+    name VARCHAR(64)
 );
 
 CREATE FUNCTION TF_Team_update() RETURNS TRIGGER AS $$
