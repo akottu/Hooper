@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block heading %}Edit Team Information: {{team.name}}{% endblock %}
 {% block content %}
-<form action="{{url_for('edit_team', name=team.name)}}" method="POST">
+<form action="{{url_for('edit_team', team_id=team.team_id)}}" method="POST">
   {{form.csrf_token}}
   <p>
     Name: {{form.name}}

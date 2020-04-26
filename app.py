@@ -127,7 +127,7 @@ def edit_player(name):
         return render_template('edit-player.html', player=player, form=form)
 
 
-@app.route('/edit-team/<name>', methods=['GET', 'POST'])
+@app.route('/edit-team/<team_id>', methods=['GET', 'POST'])
 def edit_team(name):
     team = db.session.query(models.Teams)\
         .filter(models.Teams.name == name).first()
