@@ -7,12 +7,31 @@ from sqlalchemy import inspect
 import models
 import forms
 import urllib.parse
+from flask_admin import Admin
+from flask_login import LoginManager, login_user, logout_user
 
 
 app = Flask(__name__)
 app.secret_key = 's3cr3t'
 app.config.from_object('config')
 db = SQLAlchemy(app, session_options={'autocommit': False})
+
+login = LoginManager(app)
+
+
+@login.user_loader
+def load_user(user_id):
+    return models.HooperUser.query.get(user_id)
+
+
+admin = Admin(app)
+admin.add_view(models.HooperModelView(models.HooperUser, db.session))
+admin.add_view(models.HooperModelView(models.Players, db.session))
+admin.add_view(models.HooperModelView(models.Teams, db.session))
+admin.add_view(models.HooperModelView(models.Rosters, db.session))
+admin.add_view(models.HooperModelView(models.Games, db.session))
+admin.add_view(models.HooperModelView(models.Plays, db.session))
+admin.add_view(models.HooperModelView(models.Performance, db.session))
 
 @app.route('/')
 def index():

@@ -1,5 +1,23 @@
 from app import db
 from sqlalchemy import orm
+from flask import redirect, url_for
+from flask_admin.contrib.sqla import ModelView
+from flask_login import UserMixin, current_user
+from app import db
+from sqlalchemy import orm
+
+
+class HooperUser(db.Model, UserMixin):
+    id = db.Column(db.Integer, key=True)
+    name = db.Column(db.String(64))
+
+
+class HooperModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(url_for('login'))
 
 
 class Players(db.Model):
