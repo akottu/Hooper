@@ -4,7 +4,7 @@
 <form action="{{url_for('edit_team', team_id=team.team_id)}}" method="POST">
   {{form.csrf_token}}
   <p>
-    Name: {{form.name}}
+    Name: {{form.nickname}}
     {% if form.name.errors %}
     <ul>{% for error in form.name.errors %}<li>{{error}}</li>{% endfor %}</ul>
     {% endif %}
@@ -16,7 +16,7 @@
 <!--    {% endif %}-->
 <!--  </p>-->
   <p>
-    Position: {{form.position}}
+    Position: {{form.general_manager}}
     {% if form.position.errors %}
     <ul>{% for error in form.position.errors %}<li>{{error}}</li>{% endfor %}</ul>
     {% endif %}

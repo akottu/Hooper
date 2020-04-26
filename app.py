@@ -107,17 +107,6 @@ def edit_player(name):
             conn = engine.connect()
             conn.execute(text('UPDATE player SET name = :form_name  WHERE player_id = :form_player_id'), form_name=form.name.data, form_player_id=form.player_id.data)
             conn.execute(text('UPDATE player SET position = :form_position WHERE player_id = :form_player_id'), form_position=form.position.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_points = :form_avg_points WHERE player_id = :form_player_id'), form_avg_points=form.avg_points.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_rebounds = :form_avg_rebounds WHERE player_id = :form_player_id'), form_avg_rebounds=form.avg_rebounds.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_assists = :form_avg_assists WHERE player_id = :form_player_id'), form_avg_assists=form.avg_assists.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_steals = :form_avg_steals WHERE player_id = :form_player_id'), form_avg_steals=form.avg_steals.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_blocks = :form_avg_blocks WHERE player_id = :form_player_id'), form_avg_blocks=form.avg_blocks.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_turnovers = :form_avg_turnovers WHERE player_id = :form_player_id'), form_avg_turnovers=form.avg_turnovers.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_fgm = :form_avg_fgm WHERE player_id = :form_player_id'), form_avg_fgm=form.avg_fgm.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_fga = :form_avg_fga WHERE player_id = :form_player_id'), form_avg_fga=form.avg_fga.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_ftm = :form_avg_ftm WHERE player_id = :form_player_id'), form_avg_ftm=form.avg_ftm.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET avg_fta = :form_avg_fta WHERE player_id = :form_player_id'), form_avg_fta=form.avg_fta.data, form_player_id=form.player_id.data)
-            conn.execute(text('UPDATE player SET eff = :form_eff WHERE player_id = :form_player_id'), form_eff=form.eff.data, form_player_id=form.player_id.data)
             conn.close()
             return redirect(url_for('view_players'))
         except BaseException as e:
@@ -128,9 +117,9 @@ def edit_player(name):
 
 
 @app.route('/edit-team/<team_id>', methods=['GET', 'POST'])
-def edit_team(name):
+def edit_team(team_id):
     team = db.session.query(models.Teams)\
-        .filter(models.Teams.name == name).first()
+        .filter(models.Teams.team_id == team_id).first()
     form = forms.TeamEditFormFactory.form(team)
     engine = create_engine('postgresql://user:Hooperdb2020@vcm-13382.vm.duke.edu:5432/hooper')
     if form.validate_on_submit():
