@@ -77,13 +77,13 @@ def view_player(player_id):
 def view_game(game_id):
     game = db.session.query(models.Plays) \
         .filter(models.Plays.game_id == game_id).first()
-    home_team = db.session.query(models.Teams) \
-        .filter(models.Teams.team_id == (db.session.query(models.Plays)
-                                         .filter(models.Plays.game_id == game.game_id).home_team_id))
-    away_team = db.session.query(models.Teams) \
-        .filter(models.Teams.team_id == (db.session.query(models.Plays)
-                                         .filter(models.Plays.game_id == game.game_id).visitor_team_id))
-    return render_template('view-game.html', game=game, home_team=home_team, away_team=away_team)
+    # home_team = db.session.query(models.Teams) \
+    #     .filter(models.Teams.team_id == (db.session.query(models.Plays)
+    #                                      .filter(models.Plays.game_id == game.game_id).home_team_id))
+    # away_team = db.session.query(models.Teams) \
+    #     .filter(models.Teams.team_id == (db.session.query(models.Plays)
+    #                                      .filter(models.Plays.game_id == game.game_id).visitor_team_id))
+    return render_template('view-game.html', game=game)
 
 @app.route('/view-games')
 def view_games():
