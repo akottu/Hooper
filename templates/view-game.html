@@ -5,11 +5,11 @@
     <div class="row">
         <div id="home-team" class="col-6" style="text-align: center">
             <h1>Home</h1>
-            <h1><a href="{{url_for('view_teams', team_id=game.home_team_id)}}">{{game.home_team_id}}</a></h1>
+            <h1><a href="{{url_for('view_teams', team_id=game.home_team_id)}}">{{home_team.city}} {{home_team.nickname}}</a></h1>
         </div>
         <div id="away-team" class="col-6" style="text-align: center">
             <h1>Away</h1>
-            <h1><a href="{{url_for('view_teams', team_id=game.visitor_team_id)}}">{{game.visitor_team_id}}</a></h1>
+            <h1><a href="{{url_for('view_teams', team_id=game.visitor_team_id)}}">{{away_team.city}} {{away_team.nickname}}</a></h1>
         </div>
     </div>
     <div class="row" style="text-align: center">
