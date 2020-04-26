@@ -3,18 +3,18 @@
 {% block content %}
 
     <div class="row">
-        <div id="home-team" class="col-6" style="text-align: center">
+        <div class=" home-team col-6" style="text-align: center">
             <h1>Home</h1>
             <h1><a href="{{url_for('view_teams', team_id=game.home_team_id)}}">{{home_team.city}} {{home_team.nickname}}</a></h1>
         </div>
-        <div id="away-team" class="col-6" style="text-align: center">
+        <div class="away-team col-6" style="text-align: center">
             <h1>Away</h1>
             <h1><a href="{{url_for('view_teams', team_id=game.visitor_team_id)}}">{{away_team.city}} {{away_team.nickname}}</a></h1>
         </div>
     </div>
     <div class="row" style="text-align: center">
-        <div id="home-stats" class="col-4">
-            <h1 id="home-points">{{game.pts_home}}</h1>
+        <div class="home-stats col-4">
+            <h1 class="home-points">{{game.pts_home}}</h1>
             <h1>{{game.ast_home}}</h1>
             <h1>{{game.reb_home}}</h1>
             <h1>{{game.fg_pct_home}}</h1>
@@ -31,8 +31,8 @@
             <h1>Free Throw %</h1>
 
         </div>
-        <div id="away-stats" class="col-4">
-            <h1 id="away-points">{{game.pts_away}}</h1>
+        <div class="away-stats col-4">
+            <h1 class="away-points">{{game.pts_away}}</h1>
             <h1>{{game.ast_away}}</h1>
             <h1>{{game.reb_away}}</h1>
             <h1>{{game.fg_pct_away}}</h1>
