@@ -50,3 +50,25 @@ class GameEditFormFactory:
             game_id = IntegerField(default=game.game_id)
             game_status_text = StringField(default=game.game_status_text)
         return F()
+
+class PlaysEditFormFactory:
+    @staticmethod
+    def form(play):
+        class F(FlaskForm):
+            game_id = IntegerField(default=play.game_id)
+            home_team_id = IntegerField(default=play.game_id)
+            visitor_team_id = IntegerField(default=play.game_id)
+            pts_home = DecimalField(default=play.pts_home)
+            fg_pct_home = DecimalField(default=play.fg_pct_home)
+            ft_pct_home = DecimalField(default=play.ft_pct_home)
+            fg3_pct_home = DecimalField(default=play.fg3_pct_home)
+            ast_home = DecimalField(default=play.ast_home)
+            reb_home = DecimalField(default=play.reb_home)
+            pts_away = DecimalField(default=play.pts_away)
+            fg_pct_away = DecimalField(default=play.fg_pct_away)
+            ft_pct_away = DecimalField(default=play.ft_pct_away)
+            fg3_pct_away = DecimalField(default=play.fg3_pct_away)
+            ast_away = DecimalField(default=play.ast_away)
+            reb_away = DecimalField(default=play.reb_away)
+            home_team_wins = BooleanField(default=play.home_team_wins)
+        return F()
