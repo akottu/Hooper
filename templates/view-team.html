@@ -24,6 +24,7 @@
                         <div class="col-8">
                             <h1 style="float: left;"> {{ team.city }} {{ team.nickname }} </h1>
                             <h1 style="float: right;"> [ {{ team.abbreviation }} ] </h1>
+                            <td> <button type="submit" formaction="{{url_for('edit_team', team_id=team.team_id)}}">  </button> </td>
                         </div>
                         <div class="col-4">
                             <img style="max-height: 50px; float: right;" src="../static/img/logos/nba-logo.png">
@@ -39,6 +40,7 @@
                             <h2 style="text-align: center; width: 100%; font-weight: bold;"> Owner </h2>
                             <img style="max-width: 100%; min-width: 100%;" src="../static/img/{{ team.nickname }}/owner.jpg">
                             <h3 style="text-align: center; width: 100%;"> {{ team.owner }} </h3>
+
 
                         </div>
                         <div class="col-4">

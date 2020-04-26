@@ -107,8 +107,19 @@ def edit_player(name):
             form.errors.pop('database', None)
             player.player_id = form.player_id.data
             conn = engine.connect()
-            conn.execute(text('UPDATE player SET name = :form_name WHERE player_id = :form_player_id'), form_name=form.name.data,
-            form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET name = :form_name  WHERE player_id = :form_player_id'), form_name=form.name.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET position = :form_position WHERE player_id = :form_player_id'), form_position=form.position.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_points = :form_avg_points WHERE player_id = :form_player_id'), form_avg_points=form.avg_points.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_rebounds = :form_avg_rebounds WHERE player_id = :form_player_id'), form_avg_rebounds=form.avg_rebounds.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_assists = :form_avg_assists WHERE player_id = :form_player_id'), form_avg_assists=form.avg_assists.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_steals = :form_avg_steals WHERE player_id = :form_player_id'), form_avg_steals=form.avg_steals.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_blocks = :form_avg_blocks WHERE player_id = :form_player_id'), form_avg_blocks=form.avg_blocks.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_turnovers = :form_avg_turnovers WHERE player_id = :form_player_id'), form_avg_turnovers=form.avg_turnovers.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_fgm = :form_avg_fgm WHERE player_id = :form_player_id'), form_avg_fgm=form.avg_fgm.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_fga = :form_avg_fga WHERE player_id = :form_player_id'), form_avg_fga=form.avg_fga.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_ftm = :form_avg_ftm WHERE player_id = :form_player_id'), form_avg_ftm=form.avg_ftm.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET avg_fta = :form_avg_fta WHERE player_id = :form_player_id'), form_avg_fta=form.avg_fta.data, form_player_id=form.player_id.data)
+            conn.execute(text('UPDATE player SET eff = :form_eff WHERE player_id = :form_player_id'), form_eff=form.eff.data, form_player_id=form.player_id.data)
             conn.close()
             return redirect(url_for('view_players'))
         except BaseException as e:
@@ -118,15 +129,26 @@ def edit_player(name):
         return render_template('edit-player.html', player=player, form=form)
 
 
-@app.route('/edit-team/<name>', methods=['GET', 'POST'])
+@app.route('/edit-team/<team_id>', methods=['GET', 'POST'])
 def edit_team(name):
     team = db.session.query(models.Teams)\
         .filter(models.Teams.name == name).first()
     form = forms.TeamEditFormFactory.form(team)
+    engine = create_engine('postgresql://user:Hooperdb2020@vcm-13382.vm.duke.edu:5432/hooper')
     if form.validate_on_submit():
         try:
             form.errors.pop('database', None)
             player.team_id = form.team_id.data
+            conn.execute(text('UPDATE team SET nickname = :form_nickname  WHERE team_id = :form_team_id'), form_nickname=form.nickname.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET city = :form_city WHERE team_id = :form_team_id'), form_city=form.city.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET abbreviation = :form_abbreviation WHERE team_id = :form_team_id'), form_abbreviation=form.abbreviation.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET owner = :form_owner WHERE team_id = :form_team_id'), form_owner=form.owner.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET head_coach = :form_head_coach WHERE team_id = :form_team_id'), form_head_coach=form.head_coach.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET general_manager = :form_general_manager WHERE team_id = :form_team_id'), form_general_manager=form.general_manager.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET conference = :form_conference WHERE team_id = :form_team_id'), form_conference=form.conference.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET w = :form_w WHERE team_id = :form_team_id'), form_w=form.w.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET l = :form_l WHERE team_id = :form_team_id'), form_l=form.l.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET w_pct = :form_w_pct WHERE team_id = :form_team_id'), form_w_pct=form.w_pct.data, form_team_id=form.team_id.data)
             db.session.commit()
             return redirect(url_for('view_teams'))
         except BaseException as e:
@@ -138,13 +160,30 @@ def edit_team(name):
 
 @app.route('/edit-game/<name>', methods=['GET', 'POST'])
 def edit_game(gameID):
-    game = db.session.query(models.Games)\
-        .filter(models.Games.game_id == gameID).first()
-    form = forms.GameEditFormFactory.form(game)
+    game = db.session.query(models.Plays)\
+        .filter(models.Plays.game_id == gameID).first()
+    form = forms.GameEditFormFactory.form(play)
+    engine = create_engine('postgresql://user:Hooperdb2020@vcm-13382.vm.duke.edu:5432/hooper')
     if form.validate_on_submit():
         try:
             form.errors.pop('database', None)
-            player.game_id = form.game_id.data
+            team.game_id = form.game_id.data
+            conn = engine.connect()
+            conn.execute(text('UPDATE team SET home_team_id = :form_home_team_id  WHERE team_id = :form_team_id'), form_home_team_id=form.home_team_id.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET visitor_team_id = :form_visitor_team_id WHERE team_id = :form_team_id'), form_visitor_team_id=form.visitor_team_id.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET pts_home = :form_pts_home WHERE team_id = :form_team_id'), form_pts_home=form.pts_home.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET fg_pct_home = :form_fg_pct_home WHERE team_id = :form_team_id'), form_fg_pct_home=form.fg_pct_home.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET fg3_pct_home = :form_fg3_pct_home WHERE team_id = :form_team_id'), form_fg3_pct_home=form.fg3_pct_home.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET fg3_pct_home = :form_fg3_pct_home WHERE team_id = :form_team_id'), form_fg3_pct_home=form.fg3_pct_home.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET ast_home = :form_ast_home WHERE team_id = :form_team_id'), form_ast_home=form.ast_home.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET reb_home = :form_reb_home WHERE team_id = :form_team_id'), form_reb_home=form.reb_home.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET pts_away = :form_pts_away WHERE team_id = :form_team_id'), form_pts_away=form.pts_away.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET fg_pct_away = :form_fg_pct_away WHERE team_id = :form_team_id'), form_fg_pct_away=form.fg_pct_away.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET ft_pct_away = :form_ft_pct_away  WHERE team_id = :form_team_id'), form_ft_pct_away=form.ft_pct_away.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET fg3_pct_away = :form_fg3_pct_away WHERE team_id = :form_team_id'), form_fg3_pct_away=form.fg3_pct_away.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET ast_away = :form_ast_away WHERE team_id = :form_team_id'), form_ast_away=form.ast_away.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET reb_away = :form_reb_away WHERE team_id = :form_team_id'), form_reb_away=form.reb_away.data, form_team_id=form.team_id.data)
+            conn.execute(text('UPDATE team SET home_team_wins = :form_home_team_wins WHERE team_id = :form_team_id'), form_home_team_wins=form.home_team_wins.data, form_team_id=form.team_id.data)
             db.session.commit()
             return redirect(url_for('view_games'))
         except BaseException as e:

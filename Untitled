@@ -1,0 +1,9 @@
+<p>
+  eff: {{form.eff}}
+  {% if form.eff.errors %}
+  <ul>{% for error in form.eff.errors %}<li>{{error}}</li>{% endfor %}</ul>
+  {% endif %}
+</p>
+
+
+conn.execute(text('UPDATE player SET eff = :form_eff WHERE player_id = :form_player_id'), form_eff=form.eff.data, form_player_id=form.player_id.data)
