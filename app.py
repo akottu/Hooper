@@ -77,9 +77,11 @@ def view_player(player_id):
 def view_game(game_id):
     game = db.session.query(models.Plays) \
         .filter(models.Plays.game_id == game_id).first()
+    home_team = db.session.query(models.Teams) \
+        .filter(models.Teams.team_id == db.session.query(models.Plays).filter(models.Plays.home_team_id == game.home_team_id).home_team_id)
     away_team = db.session.query(models.Teams) \
-        .filter(models.Teams.team_id == db.session.query(models.Plays).filter(models.Plays.visitor_team_id == game.visitor))
-    return render_template('view-game.html', game=game)
+        .filter(models.Teams.team_id == db.session.query(models.Plays).filter(models.Plays.visitor_team_id == game.visitor_team_id).visitor_team_id)
+    return render_template('view-game.html', game=game, home_team=home_team, away_team=away_team)
 
 @app.route('/view-games')
 def view_games():
@@ -116,7 +118,7 @@ def edit_player(name):
 
 @app.route('/edit-team/<name>', methods=['GET', 'POST'])
 def edit_team(name):
-    player = db.session.query(models.Teams)\
+    team = db.session.query(models.Teams)\
         .filter(models.Teams.name == name).first()
     form = forms.TeamEditFormFactory.form(team)
     if form.validate_on_submit():
@@ -134,7 +136,7 @@ def edit_team(name):
 
 @app.route('/edit-game/<name>', methods=['GET', 'POST'])
 def edit_game(gameID):
-    player = db.session.query(models.Games)\
+    game = db.session.query(models.Games)\
         .filter(models.Games.game_id == gameID).first()
     form = forms.GameEditFormFactory.form(game)
     if form.validate_on_submit():
