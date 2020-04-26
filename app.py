@@ -128,7 +128,7 @@ def edit_player(name):
 
 
 @app.route('/edit-team/<team_id>', methods=['GET', 'POST'])
-def edit_team(name):
+def edit_team(team_id):
     team = db.session.query(models.Teams)\
         .filter(models.Teams.name == name).first()
     form = forms.TeamEditFormFactory.form(team)
