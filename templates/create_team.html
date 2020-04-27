@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% block heading %}Create Team{% endblock %}
+{% block content %}
+<form action="{{url_for('create_team')}}" method="POST">
+  {{form.csrf_token}}
+  <p>
+    City : {{form.city}}
+    {% if form.city.errors %}
+    <ul>{% for error in form.city.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+  <p>
+    Nickname : {{form.nickname}}
+    {% if form.nickname.errors %}
+    <ul>{% for error in form.nickname.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+    <p>
+    Conference : {{form.conference}}
+    {% if form.conference.errors %}
+    <ul>{% for error in form.conference.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+    <p>
+    Owner : {{form.owner}}
+    {% if form.owner.errors %}
+    <ul>{% for error in form.owner.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+    <p>
+    General Manager : {{form.general_manager}}
+    {% if form.general_manager.errors %}
+    <ul>{% for error in form.general_manager.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+    <p>
+    Head Coach : {{form.head_coach}}
+    {% if form.head_coach.errors %}
+    <ul>{% for error in form.head_coach.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+    <input type="reset" value="Reset"/>
+  <input type="submit" value="Submit"/>
+  {% if 'database' in form.errors %}<p>{{form.errors['database']}}</p>{% endif %}
+</form>
+{% endblock %}

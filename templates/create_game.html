@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block heading %}Create Game{% endblock %}
+{% block content %}
+<form action="{{url_for('create_game')}}" method="POST">
+  {{form.csrf_token}}
+  <p>
+    Date : {{form.game_date_est}}
+    {% if form.game_date_est.errors %}
+    <ul>{% for error in form.game_date_est.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+  <p>
+    Time : {{form.game_time}}
+    {% if form.game_time.errors %}
+    <ul>{% for error in form.game_time.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+    <p>
+    Status : {{form.game_status_text}}
+    {% if form.game_status_text.errors %}
+    <ul>{% for error in form.game_status_text.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+
+    <input type="reset" value="Reset"/>
+  <input type="submit" value="Submit"/>
+  {% if 'database' in form.errors %}<p>{{form.errors['database']}}</p>{% endif %}
+</form>
+{% endblock %}

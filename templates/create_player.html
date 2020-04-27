@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block heading %}Create Player{% endblock %}
+{% block content %}
+<form action="{{url_for('create_player')}}" method="POST">
+  {{form.csrf_token}}
+  <p>
+    Name: {{form.name}}
+    {% if form.name.errors %}
+    <ul>{% for error in form.name.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+<!--  <p>-->
+<!--    player_id: {{form.player_id}}-->
+<!--    {% if form.player_id.errors %}-->
+<!--    <ul>{% for error in form.player_id.errors %}<li>{{error}}</li>{% endfor %}</ul>-->
+<!--    {% endif %}-->
+<!--  </p>-->
+  <p>
+    Position: {{form.position}}
+    {% if form.position.errors %}
+    <ul>{% for error in form.position.errors %}<li>{{error}}</li>{% endfor %}</ul>
+    {% endif %}
+  </p>
+
+  <input type="reset" value="Reset"/>
+  <input type="submit" value="Submit"/>
+  {% if 'database' in form.errors %}<p>{{form.errors['database']}}</p>{% endif %}
+</form>
+{% endblock %}

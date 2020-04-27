@@ -16,22 +16,92 @@ app.secret_key = 's3cr3t'
 app.config.from_object('config')
 db = SQLAlchemy(app, session_options={'autocommit': False})
 
-login = LoginManager(app)
+@app.route('/create-game', methods=['GET', 'POST'])
+def create_game():
+    game = models.Games()
+    game.game_id = db.session.query(models.Games).count() + 1
+    game.game_status_text = ""
+    form = forms.GameEditFormFactory.form(game)
+    if form.validate_on_submit():
+        try:
+            form.errors.pop('database', None)
+            game.game_date_est = form.game_date_est.data
+            game.game_time = form.game_time.data
+            game.game_status_text = form.game_status_text.data
+            db.session.add(game)
+            db.session.commit()
+            return redirect(url_for('create_game'))
+        except BaseException as e:
+            form.errors['database'] = str(e)
+            return render_template('create_game.html', team=game, form=form)
+    else:
+        return render_template('create_game.html', game=game, form=form)
 
+@app.route('/create-player', methods=['GET', 'POST'])
+def create_player():
+    player = models.Players()
+    player.player_id = db.session.query(models.Players).count() + 1
+    player.name = ""
+    player.position = ""
+    player.eff = 0
+    player.avg_assists = 0
+    player.avg_blocks = 0
+    player.avg_fga = 0
+    player.avg_fgm = 0
+    player.avg_fta = 0
+    player.avg_ftm = 0
+    player.avg_points = 0
+    player.avg_rebounds = 0
+    player.avg_steals = 0
+    player.avg_turnovers = 0
+    form = forms.PlayerEditFormFactory.form(player)
+    if form.validate_on_submit():
+        try:
+            form.errors.pop('database', None)
+            player.name = form.name.data
+            player.position = form.position.data
+            db.session.add(player)
+            db.session.commit()
+            return redirect(url_for('view_players'))
+        except BaseException as e:
+            form.errors['database'] = str(e)
+            return render_template('create_player.html', player=player, form=form)
+    else:
+        return render_template('create_player.html', player=player, form=form)
 
-@login.user_loader
-def load_user(user_id):
-    return models.HooperUser.query.get(user_id)
-
-
-admin = Admin(app)
-admin.add_view(models.HooperModelView(models.HooperUser, db.session))
-admin.add_view(models.HooperModelView(models.Players, db.session))
-admin.add_view(models.HooperModelView(models.Teams, db.session))
-admin.add_view(models.HooperModelView(models.Rosters, db.session))
-admin.add_view(models.HooperModelView(models.Games, db.session))
-admin.add_view(models.HooperModelView(models.Plays, db.session))
-admin.add_view(models.HooperModelView(models.Performance, db.session))
+@app.route('/create-team', methods=['GET', 'POST'])
+def create_team():
+    team = models.Teams()
+    team.team_id = db.session.query(models.Teams).count() + 1
+    team.city = ""
+    team.nickname = ""
+    team.abbreviation = ""
+    team.owner = ""
+    team.general_manager = ""
+    team.head_coach = ""
+    team.conference = ""
+    team.l = 0
+    team.w = 0
+    team.gp = 0
+    team.w_pct = 0
+    form = forms.TeamEditFormFactory.form(team)
+    if form.validate_on_submit():
+        try:
+            form.errors.pop('database', None)
+            team.city = form.city.data
+            team.nickname = form.nickname.data
+            team.owner = form.owner.data
+            team.conference = form.conference.data
+            team.general_manager = form.general_manager.data
+            team.head_coach = form.head_coach.data
+            db.session.add(team)
+            db.session.commit()
+            return redirect(url_for('create_team'))
+        except BaseException as e:
+            form.errors['database'] = str(e)
+            return render_template('create_team.html', team=team, form=form)
+    else:
+        return render_template('create_team.html', team=team, form=form)
 
 @app.route('/')
 def index():
